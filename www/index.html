@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Share Matchmaking Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚗 Ride Share Matchmaking Simulation</h1>
+            <p>Real-time driver and rider matching system</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="drivers">Drivers</button>
+            <button class="tab-btn" data-tab="riders">Riders</button>
+            <button class="tab-btn" data-tab="matching">Matching Results</button>
+        </nav>
+
+        <!-- Overview Tab -->
+        <section id="overview" class="tab-content active">
+            <h2>Welcome to Ride Share Simulation</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📊 System Status</h3>
+                    <p>Drivers Available: <span id="driverCount">0</span></p>
+                    <p>Riders Waiting: <span id="riderCount">0</span></p>
+                    <p>Matched Rides: <span id="matchCount">0</span></p>
+                </div>
+                <div class="info-card">
+                    <h3>🔄 Quick Actions</h3>
+                    <button onclick="loadData()" class="btn btn-primary">Load Data</button>
+                    <button onclick="performMatching()" class="btn btn-success">Run Matching Algorithm</button>
+                    <button onclick="resetSimulation()" class="btn btn-danger">Reset</button>
+                </div>
+                <div class="info-card">
+                    <h3>ℹ️ How it Works</h3>
+                    <p>The system uses a haversine distance formula to calculate distances between drivers and riders, then matches them based on proximity and vehicle capacity.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Drivers Tab -->
+        <section id="drivers" class="tab-content">
+            <h2>Available Drivers</h2>
+            <div class="form-group">
+                <input type="text" id="driverName" placeholder="Driver name">
+                <input type="number" id="driverLat" placeholder="Latitude" step="0.0001">
+                <input type="number" id="driverLon" placeholder="Longitude" step="0.0001">
+                <input type="number" id="driverCap" placeholder="Capacity" min="1" max="10">
+                <button onclick="addDriver()" class="btn btn-primary">Add Driver</button>
+            </div>
+            <div id="driversList" class="list-container"></div>
+        </section>
+
+        <!-- Riders Tab -->
+        <section id="riders" class="tab-content">
+            <h2>Rider Requests</h2>
+            <div class="form-group">
+                <input type="text" id="riderName" placeholder="Rider name">
+                <input type="number" id="pickupLat" placeholder="Pickup Latitude" step="0.0001">
+                <input type="number" id="pickupLon" placeholder="Pickup Longitude" step="0.0001">
+                <input type="number" id="dropoffLat" placeholder="Dropoff Latitude" step="0.0001">
+                <input type="number" id="dropoffLon" placeholder="Dropoff Longitude" step="0.0001">
+                <input type="number" id="riderPassengers" placeholder="Passengers" min="1" max="10">
+                <button onclick="addRider()" class="btn btn-primary">Add Rider</button>
+            </div>
+            <div id="ridersList" class="list-container"></div>
+        </section>
+
+        <!-- Matching Results Tab -->
+        <section id="matching" class="tab-content">
+            <h2>Matching Results</h2>
+            <button onclick="performMatching()" class="btn btn-success btn-large">Execute Matching Algorithm</button>
+            <div id="matchingResults" class="results-container"></div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Ride Share Simulation | Powered by C++ Backend & Web UI</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
